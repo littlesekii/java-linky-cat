@@ -6,7 +6,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import cat.linky.api.core.model.User;
 import cat.linky.api.core.model.dto.UserDTO;
-import cat.linky.api.core.repository.IUserRepository;
 import cat.linky.api.core.service.UserService;
 
 import java.net.URI;

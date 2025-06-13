@@ -11,7 +11,7 @@ import cat.linky.api.core.repository.ILinkRepository;
 @Service
 public class LinkService {
     
-    private ILinkRepository repository;
+    private final ILinkRepository repository;
 
     public LinkService(ILinkRepository repository) {
         this.repository = repository;

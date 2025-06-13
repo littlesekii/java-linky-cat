@@ -26,7 +26,7 @@ public class LinkController {
         this.service = service;
     }
 
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<Link>> findAll() {
         List<Link> res = service.findAll();
 
@@ -36,7 +36,7 @@ public class LinkController {
         return ResponseEntity.ok().body(res);
     }
 
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<Link> insert(@RequestBody LinkDTO req) {
         Link res = service.insert(req);
 

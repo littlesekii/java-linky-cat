@@ -1,36 +1,41 @@
 package cat.linky.api.core.model;
 
+import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="t_link")
-public class Link {
+@Table(name = "t_user_info")
+public class UserInfo {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
-    private String url;
+    private String name;
+    private String lastName;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
-    // @JsonIgnore
-    @ManyToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user")
+    @JsonIgnore
     private User user;
 
-    public Link() {}
-    public Link(String title, String url, User user) {
-        this.title = title;
-        this.url = url;
+    public UserInfo() {}
+    public UserInfo(User user, String name, String lastName) {
         this.user = user;
+        this.name = name;
+        this.lastName = lastName;
     }
 
     public Long getId() {
@@ -40,18 +45,32 @@ public class Link {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getUrl() {
-        return url;
+    public String getLastName() {
+        return lastName;
     }
-    public void setUrl(String url) {
-        this.url = url;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
     
     public User getUser() {
@@ -76,12 +95,12 @@ public class Link {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Link other = (Link) obj;
+        UserInfo other = (UserInfo) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
         } else if (!id.equals(other.id))
             return false;
         return true;
-    }    
+    }
 }

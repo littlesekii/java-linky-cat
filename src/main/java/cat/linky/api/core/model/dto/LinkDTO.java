@@ -6,6 +6,6 @@ import cat.linky.api.core.model.User;
 public record LinkDTO(String title, String url, User user) {
 
     public Link toEntity() {
-        return new Link(null, title, url, user);
+        return new Link(title, url, user);
     }
 }

@@ -28,7 +28,7 @@ public class UserController {
 
     @GetMapping("/{req}")
     public ResponseEntity<User> findByUsername(@PathVariable String req) {
-        User res = service.findByUserName(req);
+        User res = service.findByUsername(req);
 
         if (res == null)
             return ResponseEntity.notFound().build();
@@ -36,7 +36,7 @@ public class UserController {
         return ResponseEntity.ok().body(res);
     }
 
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<User> insert(@RequestBody UserDTO req) {
         User res = service.insert(req);
 
